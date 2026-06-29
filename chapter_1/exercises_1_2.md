@@ -48,12 +48,15 @@ n = 15 | 100 * 15^2 < 2^15 | 22500 < 32768 | True
 I was calculating this with python on the web (Jupyter notebook file problem_1_1.ipynb). And python/pyodide was struggling to compute the inverse of lg(n), so I left it out.
 To find the max n for f(n) = lg(n) at time t we can do: log(n) = t => n = 2^t. But the numbers will get really large, so I left that one out. For the other ones I just calculated n by taking the inverse function applied to t. Due to rounding to nearest integer some of these my be off by one. There are ways around this, but I am leaving it as is for now.
 
-|         |   1 second |       1 minute |          1 hour |            1 day |         1 month |          1 year |        1 century |
-|:--------|-----------:|---------------:|----------------:|-----------------:|----------------:|----------------:|-----------------:|
-| sqrt(n) |      1e+12 |    3.6e+15     |     1.296e+19   |      7.46496e+21 |     6.71846e+24 |     9.94519e+26 |      9.94519e+30 |
-| n       |      1e+06 |    6e+07       |     3.6e+09     |      8.64e+10    |     2.592e+12   |     3.1536e+13  |      3.1536e+15  |
-| n*lg(n) |  62746     |    2.80142e+06 |     1.33378e+08 |      2.75515e+09 |     7.18709e+10 |     7.97634e+11 |      6.8611e+13  |
-| n^2     |   1000     | 7745           | 60000           | 293938           |     1.60997e+06 |     5.61569e+06 |      5.61569e+07 |
-| n^3     |    100     |  391           |  1532           |   4420           | 13736           | 31593           | 146645           |
-| 2^n     |     19     |   25           |    31           |     36           |    41           |    44           |     51           |
-| n!      |     10     |   12           |    13           |     14           |    16           |    17           |     18           |
+UPDATE: With the help of Google AI Mode, I added a function that approximates the integer value in scientific notation directly by calculating the exponent of the base 10 representation. This way we don't need to calculate the large number directly, and we only get the magnitude represented as a power of 10 as it is common in scientific notation anyway.
+
+|         | 1 second       | 1 minute         | 1 hour             | 1 day               | 1 month              | 1 year                | 1 century               |
+|:--------|:---------------|:-----------------|:-------------------|:--------------------|:---------------------|:----------------------|:------------------------|
+| lg(n)   | 9.9007e+301029 | 5.4934e+18061799 | 2.4566e+1083707984 | 2.3333e+26008991625 | 1.0947e+780269748761 | 2.0443e+9493281943259 | 1.3335e+949328194325931 |
+| sqrt(n) | 1.000000e+12   | 3.600000e+15     | 1.296000e+19       | 7.464960e+21        | 6.718464e+24         | 9.945193e+26          | 9.945193e+30            |
+| n       | 1.000000e+06   | 6.000000e+07     | 3.600000e+09       | 8.640000e+10        | 2.592000e+12         | 3.153600e+13          | 3.153600e+15            |
+| n*lg(n) | 62746          | 2.801417e+06     | 1.333781e+08       | 2.755148e+09        | 7.187086e+10         | 7.976339e+11          | 6.861096e+13            |
+| n^2     | 1000           | 7745             | 60000              | 2.939380e+05        | 1.609968e+06         | 5.615692e+06          | 5.615692e+07            |
+| n^3     | 100            | 391              | 1532               | 4420                | 13736                | 31593                 | 1.466450e+05            |
+| 2^n     | 19             | 25               | 31                 | 36                  | 41                   | 44                    | 51                      |
+| n!      | 10             | 12               | 13                 | 14                  | 16                   | 17                    | 18                      |
