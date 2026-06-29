@@ -60,3 +60,7 @@ UPDATE: With the help of Google AI Mode, I added a function that approximates th
 | n^3     | 100            | 391              | 1532               | 4420                | 13736                | 31593                 | 1.466450e+05            |
 | 2^n     | 19             | 25               | 31                 | 36                  | 41                   | 44                    | 51                      |
 | n!      | 10             | 12               | 13                 | 14                  | 16                   | 17                    | 18                      |
+
+
+Visualization in graph mode:
+https://www.geogebra.org/calculator/qfmmtap5
