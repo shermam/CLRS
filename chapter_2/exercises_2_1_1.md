@@ -94,3 +94,33 @@ LINEAR SEARCH(A, v)
  - when the check on line 2 is `true` and we find the value. In which case we exit out of the loop and `i` is not incremented anymore. This means A[1..i-1] still doesn't contain v and is the largest subarray prefix that doesn't contain v, because A[i] is equal to v. This branch shows correctness by outputing `i` (line 3) such that `v = A[i]`.
  - or when `i > A.length` meaning that the check on line 2 was false for all previous iterations. And therefore A[1..i-1] represents the entirety of A, which in this case doesn't contain v. This branch shows correctness by outputing NIL (line 4) indicating that v does not appear in A.
 
+# 2.1-4 Consider the problem of adding two n-bit binary integers, stored in two n-element arrays A and B. The sum of the two integers should be stored in binary form in an (n+1)-element array C. State the problem formally and write pseudocode for adding the two integers.
+
+## Binary sum:
+
+**Input:** `A` and `B`, which are sequences of `n` binary digits `A = {a1, a2,..., an}` and `B = {b1, b2,..., bn}`, where each element of the sequence is either `0` or `1`. `A` and `B` therefore represent n-bit binary integers, where the first element in the sequence is the Most Significant Bit.
+
+**Outpu:** A sequence `C` of (n+1) binary digits `C = {c1, c2,..., cn, cn+1}` which represents the sum `A` and `B`
+
+Pseudo code: 
+
+ADDER(A, B)
+```
+carry = 0
+C = [A.length + 1]
+for i = A.length downto 1:
+  C[i+1] = (A[i] != B[i]) != carry
+  carry = (A[i] and B[i]) or (carry and (A[i] != B[i]))
+C[1] = carry
+return C
+```
+
+Note that we run the loop backwards because the first element in the sequence is the most significant bit.
+
+**LOOP INVARIANT:** At the start of the iteration of the `for` loop, the subarray C[i+2..A.length+1] contains the last `m` bits (where `m` = A.length - i) of the sum of the numbers represented by the subarrays A[i+1..A.length] and B[i+1..A.length].
+
+**Initialization:** We initialize i to Array.length so `m` would be 0, and C[i+2..A.length+1], A[i+1..A.length] and B[i+1..A.length] are all empty subarrays. Therefor C[i+2..A.length+1], which is empty, contains the sum of A[i+1..A.length] and B[i+1..A.length] which are also empty.
+
+**Maintenance:** In each iteration we populat the position `i+1` of C with the bit that represents the sum of A[i] and B[i] maintaing invariant.
+
+**Termination:** We exit the loop when i reaches 0, and therefore the sequence C[2..A.length+1] contains the first `n` bits of the sum of A[1..A.lenght] and B[1..A.lenght], which are the full numbers. Therefore when we finally put the carry bit at position `1` of C, C will contain the full sum of A and B.
