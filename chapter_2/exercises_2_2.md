@@ -31,7 +31,7 @@ See termination above for explanation.
 
 ## Give the best-case and worst-case running times of selection sort in $\Theta$-notation.
 
-We let $t_j$ be the number of times the the expression in the `if` statement on line `4` evaluates to `True` for that value o `j`. 
+We let $t_j$ be the number of times the the expression in the `if` statement on line `4` evaluates to `True` for that value of `j`. 
 
 |SELECTION-SORT(A)                                        |Cost   |times                       |
 |:--------------------------------------------------------|:------|:---------------------------|
