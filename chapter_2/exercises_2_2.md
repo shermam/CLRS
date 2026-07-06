@@ -2,7 +2,7 @@
 
 $\Theta(n^3)$
 
-Reasoning: I took the highest order term ($n^3/100$) and removed the constant factor 100, leaving only $n^3$. And then just presented it wrapped up in parentheses next to the Theta greek letter as seems to be the convention.
+Reasoning: I took the highest order term ($n^3/1000$) and removed the constant factor 1000, leaving only $n^3$. And then just presented it wrapped up in parentheses next to the Theta greek letter as seems to be the convention.
 
 # 2.2-2 Consider sorting n numbers stored in array A by first finding the smallest element of A and exchanging it with the element in A[1]. Then find the second smallest element of A, and exchange it with A[2]. Continue in this manner for the first n-1 elements of A. Write pseudocode for this algorithm, which is known as selection sort.
 
