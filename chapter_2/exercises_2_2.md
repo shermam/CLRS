@@ -52,7 +52,7 @@ For this algorithm, $t_j$ is the only thing that can vary from best-case to wors
 
 By changing the arrangement of elements in A we can minimize the number of times that line 5 is executed.
 
-We can set the initial position of the elements to be sorted in nondecreasing order. This way, all of the comparisons that we do on line 4 will be false since we compare elements in earlier positions to elements in later positions. This means line 5 will never be executed and can be removed from the cost calculation.
+We can set the initial position of the elements to be sorted in nondecreasing order. This way, all of the comparisons that we do on line 4 will be false since we compare elements in earlier positions to elements in later positions. This means line 5 will never be executed and can be removed from the cost calculation. $t_j = 0$
 
 $T(n) = c_1n + c_2(n-1) + c_3\sum_{j=1}^{n-1} (n-j+1) + c_4\sum_{j=1}^{n-1} (n-j) + c_6(n-1)$
 
@@ -127,6 +127,32 @@ Removing lower terms and the leading term constant coeficient we have the runnin
 ### Worst Case
 
 Similarly we can maximize the number of times line 5 is executed by rearranging the elements in the initial position of the array.
-We now arrange elements in nonincreasing order, which ensures that the expression on line 4 will always yield True, and line 5 will be executed as many times as line 4. The whole calculation will then look like this:
+We now arrange elements in nonincreasing order, which ensures that the expression on line 4 will always yield True, and line 5 will be executed as many times as line 4. The whole calculation will then look like this for ($t_j = (n-j)$):
 
-$T(n) = c_1n + c_2(n-1) + c3\sum_{j=1}^{n-1} (n-j+1) + c_4\sum_{j=1}^{n-1} (n-j) + c_5\sum_{j=1}^{n-1} (n-j) + c_6(n-1)$
+$T(n) = c_1n + c_2(n-1) + c_3\sum_{j=1}^{n-1} (n-j+1) + c_4\sum_{j=1}^{n-1} (n-j) + c_5\sum_{j=1}^{n-1} (n-j) + c_6(n-1)$
+
+Expanding summations for this:
+
+$\sum_{j=1}^{n-1} (n-j+1)$ like before $= \boxed{\frac{1}{2}n^2+\frac{1}{2}n-1}$
+
+and $\sum_{j=1}^{n-1} (n-j) = \boxed{\frac{1}{2}n^2-\frac{1}{2}n}$
+
+Then we have:
+
+$T(n) = c_1n + c_2(n-1) + c_3(\frac{1}{2}n^2 + \frac{1}{2}n - 1) + c_4(\frac{1}{2}n^2-\frac{1}{2}n) + c_5(\frac{1}{2}n^2-\frac{1}{2}n) + c_6(n-1)$
+
+$=c_1n + c_2n - c_2 + \frac{1}{2}c_3n^2 + \frac{1}{2}c_3n - c_3 + \frac{1}{2}c_4n^2 - \frac{1}{2}c_4n + \frac{1}{2}c_5n^2 - \frac{1}{2}c_5n + c_6n - c_6$
+
+$=(\frac{1}{2}c_3 + \frac{1}{2}c_4 + \frac{1}{2}c_5)n^2 + (c_1 + c_2 + \frac{1}{2}c_3 - \frac{1}{2}c_4 - \frac{1}{2}c_5 + c_6)n - (c_2 + c_3 + c_6)$
+
+Taking the constants like this:
+- $a = \frac{1}{2}c_3 + \frac{1}{2}c_4 + \frac{1}{2}c_5$
+- $b = c_1 + c_2 + \frac{1}{2}c_3 - \frac{1}{2}c_4 - \frac{1}{2}c_5 + c_6$
+- $c = c_2 + c_3 + c_6$
+
+We again have the degree 2 polinomial:
+
+$an^2+bn+c$ which in Theta notation is represented by $\boxed{\Theta(n^2)}$.
+
+So, diferently from Insertion Sort, Selection sort has running time proportional to $\boxed{\Theta(n^2)}$ for both, the best case and worst case.
+
