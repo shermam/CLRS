@@ -156,3 +156,81 @@ $an^2+bn+c$ which in Theta notation is represented by $\boxed{\Theta(n^2)}$.
 
 So, diferently from Insertion Sort, Selection sort has running time proportional to $\boxed{\Theta(n^2)}$ for both, the best case and worst case.
 
+# 2.2-3 Consider linear search again (see Exercise 2.1-3).
+
+```
+LINEAR SEARCH(A, v)
+1 for i = 1 to A.length
+2   if A[i] == v
+3     return i
+4 return NIL
+```
+
+## How many elements of the input sequence need to be checked on the average, assuming that the element being searched for is equally likely to be any element in the array?
+
+Let `v` be the element being searched.
+
+Let `k` be the number of elements that need to be checked to find `v`.
+
+The question prompt doesn't mention the likelyhood of `v` not being in the array. So for this analysis I will make the naive simplifying assumption that `v` is ALWAYS in the array, which equal probability of being in any position. This means line 4 will never be executed.
+
+Since we start checking from position 1 and keep checking one by one in ascending order. If `v` is in position `i` we need to check `i` elements to find `v`. Meaning `k` = `i`. For example: taking the array `A = [a,b,c,d,e]` and `q=c`. To find `c`, which is in position `i=3`, we need to check `a` in position `i=1`, `b` in position `i=2` and `c` in position `i=3` which matches `v` and allows us to exit the loop after checking a total of `k=3` elements.
+
+If `v` is equally likely to be in any position of an array `A` of size `n`, then the probability of `v` being in any position `i` of `A` is equal to $\frac{1}{n}$. And the probability of having to check `k` elements to find `v` for $1 \leq k \leq n$ is also $\frac{1}{n}$.
+
+Now to find the average value of `k` we can just sum all possible `k`s multiplied by the probability of each `k` like so:
+
+$\sum\limits_{k=1}^{n}(\frac{1}{n}k)$
+
+$=\frac{1}{n}\sum_{k=1}^{n}k$
+
+$=\frac{1}{n}(\frac{n(n+1)}{2})$
+
+$=\frac{n(n+1)}{2n}$
+
+$=\boxed{\frac{n+1}{2}}$
+
+In the average case we need to check $\frac{n+1}{2}$ elements to find `v`.
+
+## How about in the worst case?
+
+In the worst case `v` is in the last position of the Array, position `i=n`. So in the worst case `k=n`. We would have to check `n` elements to find `v`.
+
+## What are the average-case and worst-case running times of linearsearch in $\Theta$-notation? Justify your answers.
+
+Again assuming we never get an elements that is not in the array we have:
+
+Let $k_v$ be the number of times the check on line 2 is executed before finding `v` and exiting out of the loop.
+
+|LINEAR SEARCH(A, v)      |Cost   |times                       |
+|:------------------------|:------|:---------------------------|
+|`for i = 1 to A.length`  | $c_1$ |$k_v$                       |
+|`  if A[i] == v`         | $c_2$ |$k_v$                       |
+|`    return i`           | $c_3$ |1                           |
+|`return NIL`             | $c_4$ |0                           |
+
+Then:
+
+$T(n)=c_1k_v+c_2k_v+c_3$
+
+### Average Case:
+
+$k_v=\frac{n+1}{2}$
+
+$T(n)=c_1(\frac{n+1}{2})+c_2(\frac{n+1}{2})+c_3$
+
+$=\frac{1}{2}c_1n+c1+\frac{1}{2}c_2n+c2+c_3$
+
+$=(\frac{1}{2}c_1+\frac{1}{2}c_2)n+(c_1+c_2+c_3)$
+
+which can be represented as $an+b$, a linear equation for constants a and b. And in $\Theta$-notation is $\boxed{\Theta(n)}$.
+
+### Worst case
+
+$k_v=n$
+
+$T(n)=c_1n+c_2n+c_3$
+
+$=(c_1+c_2)n+c_3$
+
+Which is of the form $an+b$ for constants a and b. And in $\Theta$-notation is also $\boxed{\Theta(n)}$.
