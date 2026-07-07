@@ -237,6 +237,6 @@ Which is of the form $an+b$ for constants a and b. And in $\Theta$-notation is a
 
 # 2.2-4 How can we modify almost any algorithm to have a good best-case running time?
 
-This is kind of a very brad question. Does it refer to any "sorting" algorithm? Or just any algorithm in general?
+This is kind of a very broad question. Does it refer to any "sorting" algorithm? Or just any algorithm in general?
 Either case we could try to optmize for the best case, such that on the best case we run the minimal number of instructions possible.
 For sorting this could mean checking if the array is already in the sorted position before actually moving any of the elements. Insertion Sort does this by check each element against the previous element before doing anything else which would give $\Theta(n)$ for the best case, but Selection Sort doesn't do this and this results in $\Theta(n^2)$ even for the best case. For search, assuming that best case is having the element you are looking for be on the first position, this would mean checking the first position first which gives $\Theta(1)$ for the best case.
